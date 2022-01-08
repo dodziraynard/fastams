@@ -53,8 +53,8 @@ class Message(models.Model):
 
 
 class Setting(models.Model):
-    api_key = models.CharField(max_length=100)
-    sender_id = models.CharField(max_length=15)
+    api_key = models.CharField(max_length=100, null=True, blank=True)
+    sender_id = models.CharField(max_length=15, null=True, blank=True)
     balance = models.IntegerField(default=0)
 
     class Meta:
