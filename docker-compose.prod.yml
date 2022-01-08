@@ -15,6 +15,8 @@ services:
       - 8000
     env_file:
       - ./.env.prod
+    environment:
+      - REDIS_URL=redis://redis:6379
     depends_on:
       - db
   db:
@@ -28,6 +30,9 @@ services:
       - 5433:5432
   redis:
     image: "redis:alpine"
+    restart: always
+    expose:
+      - 6379
   nginx:
     build: ./nginx
     restart: always
