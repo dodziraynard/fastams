@@ -1,5 +1,5 @@
 from django.db import models
-from fastams.utils.constants import (
+from fastsms.utils.constants import (
     MESSAGE_DRAFT,
     MESSAGE_FAILED,
     MESSAGE_SUCCESS,

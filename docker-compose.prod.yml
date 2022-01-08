@@ -5,12 +5,12 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile.prod
-    command: gunicorn fastams.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn fastsms.wsgi:application --bind 0.0.0.0:8000
     restart: always
     volumes:
-      - static_volume:/home/fastams/app/static
-      - assets_volume:/home/fastams/app/assets
-      - logs_volume:/home/fastams/app/logs
+      - static_volume:/home/fastsms/app/static
+      - assets_volume:/home/fastsms/app/assets
+      - logs_volume:/home/fastsms/app/logs
     expose:
       - 8000
     env_file:
@@ -32,23 +32,24 @@ services:
     build: ./nginx
     restart: always
     volumes:
-      - static_volume:/home/fastams/app/static
-      - assets_volume:/home/fastams/app/assets
-      - logs_volume:/home/fastams/app/logs
+      - static_volume:/home/fastsms/app/static
+      - assets_volume:/home/fastsms/app/assets
+      - logs_volume:/home/fastsms/app/logs
     ports:
       - 80:80
       - 443:443
     depends_on:
       - web
   celery:
-    build: .
-    command: celery -A fastams worker -l info
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.prod
+    command: celery -A fastsms worker -l info
     restart: always
-    volumes:
-      - .:/code
     depends_on:
       - db
       - redis
+      - web
 
 volumes:
   postgres_data: null

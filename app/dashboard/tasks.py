@@ -2,14 +2,14 @@ import django
 
 django.setup()
 from dashboard.models import Setting
-from fastams.utils.constants import MESSAGE_SUCCESS, MESSAGE_FAILED
+from fastsms.utils.constants import MESSAGE_SUCCESS, MESSAGE_FAILED
 from dashboard.models import Message
 from dashboard.models import BulkSMS
 from django.conf import settings
-import pandas as pd
 from celery import shared_task
 import requests
 from requests.exceptions import RequestException, Timeout
+import openpyxl
 
 
 @shared_task
@@ -69,10 +69,12 @@ def send_sms(bulk_sms_id):
     # Process Uploaded number file
     file = bulk_sms.file
     if file:
-        url = settings.BASE_DIR / file.url[1:]
-        df = pd.read_excel(url, header=4, dtype=str)
-        result = [(x, y) for x, y in zip(df['NUMBER'], df['NAME'])]
-
+        xlsx_file = settings.BASE_DIR / file.url[1:]
+        wb_obj = openpyxl.load_workbook(xlsx_file)
+        sheet = wb_obj.active
+        result = []
+        for _, row in enumerate(sheet.iter_rows(min_row=6)):
+            result.append((row[0].value, row[1].value))
         for number, name in result:
             sms = text
             if isinstance(name, str):
