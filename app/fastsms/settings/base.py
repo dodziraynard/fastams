@@ -148,8 +148,8 @@ MESSAGE_TAGS = {
 }
 
 # CELERY
-CELERY_BROKER_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-CELERY_RESULT_BACKEND = os.getenv("REDIS_URL", "redis://localhost:6379")
+CELERY_BROKER_URL = os.environ.get("REDIS_URL", "redis://redis:6379")
+CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL", "redis://redis:6379")
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_IMPORTS = ("dashboard.tasks")

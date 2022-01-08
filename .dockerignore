@@ -33,5 +33,7 @@ Docker*
 nginx
 README.md
 db.sqlite3
+local_settings.py
+
 
 uploads
