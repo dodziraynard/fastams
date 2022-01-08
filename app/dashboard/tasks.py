@@ -2,7 +2,7 @@ import django
 
 django.setup()
 from dashboard.models import Setting
-from messenger.utils.constants import MESSAGE_SUCCESS, MESSAGE_FAILED
+from fastams.utils.constants import MESSAGE_SUCCESS, MESSAGE_FAILED
 from dashboard.models import Message
 from dashboard.models import BulkSMS
 from django.conf import settings

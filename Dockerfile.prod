@@ -2,18 +2,18 @@
 FROM python:3.9.6-alpine
 
 # create directory for the app user
-RUN mkdir -p /home/messenger
+RUN mkdir -p /home/fastams
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # create the app user
-RUN addgroup -S messenger && adduser -S messenger -G messenger
+RUN addgroup -S fastams && adduser -S fastams -G fastams
 
 # create the appropriate directories
-ENV HOME=/home/messenger
-ENV APP_HOME=/home/messenger/app
+ENV HOME=/home/fastams
+ENV APP_HOME=/home/fastams/app
 RUN mkdir $APP_HOME
 RUN mkdir $APP_HOME/static
 RUN mkdir $APP_HOME/assets
@@ -23,8 +23,8 @@ WORKDIR $APP_HOME
 
 # install dependencies
 RUN apk update \
-    # && apk add --virtual build-deps gcc python3-dev musl-dev \
     && apk add gcc python3-dev musl-dev \
+    && apk add g++ \
     && apk add postgresql \
     && apk add postgresql-dev \
     && apk add openssl-dev libffi-dev \
@@ -46,10 +46,10 @@ RUN chmod +x  $APP_HOME/entrypoint.prod.sh
 COPY ./app $APP_HOME
 
 # run entrypoint.prod.sh
-ENTRYPOINT ["/home/messenger/app/entrypoint.prod.sh"]
+ENTRYPOINT ["/home/fastams/app/entrypoint.prod.sh"]
 
 # chown all the files to the app user
-RUN chown -R messenger:messenger $APP_HOME
+RUN chown -R fastams:fastams $APP_HOME
 
 # change to the app user
-USER messenger
+USER fastams

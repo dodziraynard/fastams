@@ -3,7 +3,7 @@ from django.views import View
 from django.contrib import messages
 from dashboard.models import Message
 from dashboard.tasks import resend_sms_with_ids
-from messenger.utils.functions import filter_sms_from_query_parameter
+from fastams.utils.functions import filter_sms_from_query_parameter
 from dashboard.forms import SettingForm
 from dashboard.models import Setting
 from dashboard.tasks import send_sms
@@ -12,7 +12,7 @@ from dashboard.models import BulkSMS
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
-from messenger.utils.constants import (
+from fastams.utils.constants import (
     MESSAGE_FAILED,
     MESSAGE_SUCCESS,
     MESSAGE_PENDING,
