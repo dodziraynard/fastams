@@ -1,0 +1,83 @@
+{% extends 'dashboard/base_template.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- breadcrumb -->
+<div class="breadcrumb-header justify-content-between">
+    <div class="my-auto">
+        <div class="d-flex">
+            <h4 class="content-title mb-0 my-auto">Home</h4>
+            <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Dashboard</span>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<h3>Hi {{request.user}}</h3>
+
+{% if messages %}
+<div id="message-container" class="col-md-12 mx-auto">
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show py-3 mt-2" role="alert">
+        <strong>Alert! </strong> {{message}}.
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- row -->
+<div class="row row-sm">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-xm-12">
+        <div class="card overflow-hidden sales-card bg-success-gradient">
+            <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                <div class="">
+                    <h6 class="mb-3 tx-12 text-white">Success</h6>
+                </div>
+                <div class="pb-0 mt-0">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4 class="tx-20 fw-bold mb-1 text-white">{{successes.count}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="compositeline3" class="pt-1">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-md-6 col-xm-12">
+        <div class="card overflow-hidden sales-card bg-warning-gradient">
+            <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                <div class="">
+                    <h6 class="mb-3 tx-12 text-white">Pending</h6>
+                </div>
+                <div class="pb-0 mt-0">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4 class="tx-20 fw-bold mb-1 text-white">{{pendings.count}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="compositeline" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-md-6 col-xm-12">
+        <div class="card overflow-hidden sales-card bg-danger-gradient">
+            <div class="ps-3 pt-3 pe-3 pb-2 pt-0">
+                <div class="">
+                    <h6 class="mb-3 tx-12 text-white">Failed</h6>
+                </div>
+                <div class="pb-0 mt-0">
+                    <div class="d-flex">
+                        <div class="">
+                            <h4 class="tx-20 fw-bold mb-1 text-white">{{failures.count}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="compositeline2" class="pt-1">20,3,2,4,6,12,14,8,7,14,50,12,7,8,4,3,2,2,5,6,7</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

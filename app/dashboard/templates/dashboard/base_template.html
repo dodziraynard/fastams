@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+    <meta name="Author" content="Spruko Technologies Private Limited">
+    <meta name="Keywords"
+        content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4" />
+
+    <!-- Title -->
+    <title> Fast SMS | {% block pagetitle %}Admin{% endblock %} </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'assets/img/brand/favicon.png' %}" type="image/x-icon" />
+
+    <!-- Icons css -->
+    <link href="{% static 'assets/css-ltr/icons.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    <!-- Bootstrap css -->
+    <link href="{% static 'assets/plugins/bootstrap/css-ltr/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--  Owl-carousel css-->
+    <link href="{% static 'assets/plugins/owl-carousel/owl.carousel.css' %}" rel="stylesheet" />
+
+    <!-- P-scroll bar css-->
+    <link href="{% static 'assets/plugins/perfect-scrollbar/p-scrollbar.css' %}" rel="stylesheet" />
+
+    <!--  Right-sidemenu css -->
+    <link href="{% static 'assets/plugins/sidebar/sidebar.css' %}" rel="stylesheet">
+
+    <!-- Sidemenu css -->
+    <link rel="stylesheet" href="{% static 'assets/css-ltr/sidemenu.css' %}">
+
+    <!-- Maps css -->
+    <link href="{% static 'assets/plugins/jqvmap/jqvmap.min.css' %}" rel="stylesheet">
+
+    <!-- style css -->
+    <link href="{% static 'assets/css-ltr/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-ltr/style-dark.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-ltr/boxed.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css-ltr/dark-boxed.css' %}" rel="stylesheet">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/c85a365743.js" crossorigin="anonymous"></script>
+
+    <!---Skinmodes css-->
+    <link href="{% static 'assets/css-ltr/skin-modes.css' %}" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+
+    {% block morestyles %}{% endblock %}
+</head>
+
+<body class="main-body app sidebar-mini">
+
+    <!-- Loader -->
+    <div id="global-loader">
+        <img src="{% static 'assets/img/loader.svg' %}" class="loader-img" alt="Loader">
+    </div>
+    <!-- /Loader -->
+
+    <!-- Page -->
+    <div class="page">
+
+        <!-- main-sidebar -->
+        <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+        <aside class="app-sidebar sidebar-scroll">
+            <div class="main-sidebar-header active">
+                <a class="desktop-logo logo-light active" href="{% url 'dashboard:index' %}"><img
+                        src="{% static 'assets/img/brand/logo.png' %}" class="main-logo" alt="logo"></a>
+                <a class="desktop-logo logo-dark active" href="{% url 'dashboard:index' %}"><img
+                        src="{% static 'assets/img/brand/logo.png' %}" class="main-logo dark-theme" alt="logo"></a>
+                <a class="logo-icon mobile-logo icon-light active" href="{% url 'dashboard:index' %}"><img
+                        src="{% static 'assets/img/brand/favicon.png' %}" class="logo-icon" alt="logo"></a>
+                <a class="logo-icon mobile-logo icon-dark active" href="{% url 'dashboard:index' %}"><img
+                        src="{% static 'assets/img/brand/favicon.png' %}" class="logo-icon dark-theme" alt="logo"></a>
+            </div>
+            <div class="main-sidemenu">
+                <div class="app-sidebar__user clearfix">
+                    <div class="dropdown user-pro-body">
+                        <div class="">
+                            <img alt="user-img" class="avatar avatar-xl brround"
+                                src="{% if request.user.photo %}{{request.user.photo.url}}{%else%}{% static 'assets/img/avatar.png' %}{%endif%}"><span
+                                class="avatar-status profile-status bg-green"></span>
+                        </div>
+                        <div class="user-info">
+                            <h4 class="fw-semibold mt-3 mb-0">{{request.user}}</h4>
+                            <span class="mb-0 text-muted">Staff</span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="side-menu">
+                    <li class="side-item side-item-category">Main</li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{% url 'dashboard:index' %}"><svg
+                                xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3" />
+                                <path
+                                    d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z" />
+                            </svg><span class="side-menu__label">Home</span><span class="badge bg-success text-light"
+                                id="bg-side-text">1</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{% url 'dashboard:messages' %}"><svg
+                                xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path d="M4 12c0 4.08 3.06 7.44 7 7.93V4.07C7.05 4.56 4 7.92 4 12z" opacity=".3" />
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z" />
+                            </svg><span class="side-menu__label">Messages</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{% url 'dashboard:settings' %}"><svg
+                                xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path d="M4 12c0 4.08 3.06 7.44 7 7.93V4.07C7.05 4.56 4 7.92 4 12z" opacity=".3" />
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z" />
+                            </svg><span class="side-menu__label">Config</span></a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- main-sidebar -->
+
+        <!-- main-content -->
+        <div class="main-content app-content">
+
+            <!-- main-header -->
+            <div class="main-header sticky side-header nav nav-item">
+                <div class="container-fluid">
+                    <div class="main-header-left ">
+                        <div class="responsive-logo">
+                            <a href=""><img src="{% static 'assets/img/brand/logo.png' %}" class="logo-1"
+                                    alt="logo"></a>
+                            <a href=""><img src="{% static 'assets/img/brand/logo-white.png' %}" class="dark-logo-1"
+                                    alt="logo"></a>
+                            <a href=""><img src="{% static 'assets/img/brand/favicon.png' %}" class="logo-2"
+                                    alt="logo"></a>
+                            <a href=""><img src="{% static 'assets/img/brand/favicon-white.png' %}" class="dark-logo-2"
+                                    alt="logo"></a>
+                        </div>
+                        <div class="app-sidebar__toggle" data-bs-toggle="sidebar">
+                            <a class="open-toggle" href="#"><i class="header-icon fe fe-align-left"></i></a>
+                            <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
+                        </div>
+                        <div class="main-header-center ms-3 d-sm-none d-md-none d-lg-block">
+                            <input class="form-control" placeholder="Search for anything..." type="search"> <button
+                                class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
+                        </div>
+                    </div>
+                    <div class="main-header-right">
+                        <ul class="nav nav-item  navbar-nav-right ms-auto">
+                            <li class="nav-item full-screen fullscreen-button">
+                                <a class="new nav-link full-screen-link" href="#"><svg
+                                        xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-maximize">
+                                        <path
+                                            d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                                        </path>
+                                    </svg></a>
+                            </li>
+
+                            <li class="dropdown main-profile-menu nav nav-item nav-link">
+                                <a class="profile-user d-flex" href=""><img alt="User profile" height="60" width="60"
+                                        src="{% if request.user.photo %}{{request.user.photo.url}}{%else%}{% static 'assets/img/avatar.png' %}{%endif%}"></a>
+                                <div class="dropdown-menu">
+                                    <div class="main-header-profile bg-primary p-3">
+                                        <div class="d-flex wd-100p">
+                                            <div class="main-img-user"><img alt="User profile" height="60" width="60"
+                                                    src="{% if request.user.photo %}{{request.user.photo.url}}{%else%}{% static 'assets/img/avatar.png' %}{%endif%}"
+                                                    class=""></div>
+                                            <div class="ms-3 my-auto">
+                                                <h6>{{request.user}}</h6><span>Staff</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="dropdown-item" href="{% url 'accounts:logout' %}"><i
+                                            class="bx bx-log-out"></i> Sign Out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /main-header -->
+
+            <!-- container -->
+            <div class="container-fluid">
+                {% block content %}{% endblock %}
+            </div>
+            <!-- /Container -->
+        </div>
+        <!-- /main-content -->
+
+        <!-- Footer opened -->
+        <div class="main-footer ht-40">
+            <div class="container-fluid pd-t-0-f ht-100p">
+                <span>Copyright © 2022 <a href="">Messenger</a> All rights reserved.</span>
+            </div>
+        </div>
+        <!-- Footer closed -->
+
+    </div>
+    <!-- End Page -->
+
+    <!-- Back-to-top -->
+    <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
+
+    <!-- JQuery min js -->
+    <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Bundle js -->
+    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!--Internal  Chart.bundle js -->
+    <script src="{% static 'assets/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+
+    <!-- Ionicons js -->
+    <script src="{% static 'assets/plugins/ionicons/ionicons.js' %}"></script>
+
+    <!-- Moment js -->
+    <script src="{% static 'assets/plugins/moment/moment.js' %}"></script>
+
+    <!--Internal Sparkline js -->
+    <script src="{% static 'assets/plugins/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+
+    <!-- Moment js -->
+    <script src="{% static 'assets/plugins/raphael/raphael.min.js' %}"></script>
+
+    <!--Internal Apexchart js-->
+    <script src="{% static 'assets/js/apexcharts.js' %}"></script>
+
+    <!-- Rating js-->
+    <script src="{% static 'assets/plugins/rating/jquery.rating-stars.js' %}"></script>
+    <script src="{% static 'assets/plugins/rating/jquery.barrating.js' %}"></script>
+
+    <!--Internal  Perfect-scrollbar js -->
+    <script src="{% static 'assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/perfect-scrollbar/p-scroll.js' %}"></script>
+
+    <!-- Eva-icons js -->
+    <script src="{% static 'assets/js/eva-icons.min.js' %}"></script>
+
+    <!-- right-sidebar js -->
+    <script src="{% static 'assets/plugins/sidebar/sidebar.js' %}"></script>
+    <script src="{% static 'assets/plugins/sidebar/sidebar-custom.js' %}"></script>
+
+    <!-- Sticky js -->
+    <script src="{% static 'assets/js/sticky.js' %}"></script>
+    <script src="{% static 'assets/js/modal-popup.js' %}"></script>
+
+    <!-- Left-menu js-->
+    <script src="{% static 'assets/plugins/side-menu/sidemenu.js' %}"></script>
+
+    <!-- Internal Map -->
+    <script src="{% static 'assets/plugins/jqvmap/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jqvmap/maps/jquery.vmap.usa.js' %}"></script>
+
+    <!--Internal  index js -->
+    <script src="{% static 'assets/js/index.js' %}"></script>
+
+    <!-- Apexchart js-->
+    <script src="{% static 'assets/js/apexcharts.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.vmap.sampledata.js' %}"></script>
+
+    <!-- custom js -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <script src="{% static 'js/management_app.js' %}"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+    {% block morescripts %}{% endblock %}
+
+</body>
+
+</html>

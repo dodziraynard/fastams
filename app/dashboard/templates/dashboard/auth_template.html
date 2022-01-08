@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+    <meta name="Author" content="Spruko Technologies Private Limited">
+    <meta name="Keywords"
+        content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4" />
+
+    <!-- Title -->
+    <title> Akuafo Hall </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/../..assets/img/brand/favicon.png' %}" type="image/x-icon" />
+
+    <!-- Icons css -->
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap css -->
+    <link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--  Right-sidemenu css -->
+    <link href="{% static 'assets/plugins/sidebar/sidebar.css' %}" rel="stylesheet">
+
+    <!--  Custom Scroll bar-->
+    <link href="{% static 'assets/plugins/mscrollbar/jquery.mCustomScrollbar.css' %}" rel="stylesheet" />
+
+    <!--- Style css --->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/boxed.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/dark-boxed.css' %}" rel="stylesheet">
+
+    <!--- Dark-mode css --->
+    <link href="{% static 'assets/css/style-dark.css' %}" rel="stylesheet">
+
+    <!---Skinmodes css-->
+    <link href="{% static 'assets/css/skin-modes.css' %}" rel="stylesheet" />
+
+    <!--- Animations css-->
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="error-page1 main-body bg-light text-dark">
+
+    <!-- Page -->
+    <div class="page">
+
+        <div class="container-fluid">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+    </div>
+    <!-- End Page -->
+
+    <!-- JQuery min js -->
+    <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Bundle js -->
+    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Ionicons js -->
+    <script src="{% static 'assets/plugins/ionicons/ionicons.js' %}"></script>
+
+    <!-- Moment js -->
+    <script src="{% static 'assets/plugins/moment/moment.js' %}"></script>
+
+    <!-- P-scroll js -->
+    <script src="{% static 'assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+
+    <!-- eva-icons js -->
+    <script src="{% static 'assets/js/eva-icons.min.js' %}"></script>
+
+    <!-- Rating js-->
+    <script src="{% static 'assets/plugins/rating/jquery.rating-stars.js' %}"></script>
+    <script src="{% static 'assets/plugins/rating/jquery.barrating.js' %}"></script>
+
+    <!-- Custom Scroll bar Js-->
+    <script src="{% static 'assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+    <!-- custom js -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+</body>
+
+</html>

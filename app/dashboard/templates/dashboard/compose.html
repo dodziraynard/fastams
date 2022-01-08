@@ -1,0 +1,93 @@
+{% extends 'dashboard/base_template.html' %}
+
+{% block pagetitle %} messages {% endblock %}
+
+{% load static %}
+
+
+
+<!-- MAIN CONTENT STARTS HERE -->
+{% block content %}
+<!-- breadcrumb -->
+<div class="breadcrumb-header justify-content-between">
+    <div class="my-auto">
+        <div class="d-flex">
+            <h4 class="content-title mb-0 my-auto">Home</h4>
+            <a href="{% url 'dashboard:messages' %}" class="text-muted mt-1 tx-13 ms-2 mb-0">/ Messages</a>
+            <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Compose</span>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!-- page title -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="page-title-box row">
+            <h4 class="page-title col">Compose</h4>
+        </div>
+    </div>
+</div>
+
+<!-- row opened -->
+<div class="row row-sm">
+    <!-- Col -->
+    <div class="col-lg-4 col-xl-3 col-md-12 col-sm-12">
+        <div class="card mg-b-20">
+            <div class="main-content-left main-content-left-mail card-body">
+                <a class="btn btn-primary btn-compose" href="" id="btnCompose">State</a>
+                <div class="main-mail-menu">
+                    <h4 class="p-0 m-0">Sender ID</h4>
+                    <span class="badge bg-info">{{setting.sender_id}}</span>
+                    <h4 class="mt-3 mb-0 p-0">Balance</h4>
+                    <span class="badge bg-info">{{setting.balance}}</span>
+                </div><!-- main-mail-menu -->
+            </div>
+        </div>
+    </div>
+    <!-- /Col -->
+    <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Compose new message</h3>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row align-items-center">
+                            <label class="col-sm-2">To</label>
+                            <div class="col-sm-10">
+                                <span class="text text-info">Enter numbers (with names) separated by comma.</span>
+                                <textarea type="text" name="numbers" class="form-control"
+                                    placeholder="E.g., 0240000000, 0500000000 OR 0240000000;Kofi Mensah,0240000000;John Doe">{{template.numbers}}</textarea>
+                                <a href="" class="btn btn-primary btn-sm"><i class="bi bi-save"></i></a>
+                                <input type="file" name="numbers_file" id="numbers" accept=".xlsx,xlx">
+                                {% if template.file %}
+                                <a href="{{template.file.url}}"> <i class="bi bi-save"></i> Download Current</a>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row ">
+                            <label class="col-sm-2">Message</label>
+                            <div class="col-sm-10">
+                                <span class="text text-info">Enter your message here with template literals. </span>
+                                <textarea rows="10" name="message" class="form-control" placeholder="E.g., Hi %name%,"
+                                    required>{{template.text}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-sm-flex">
+                    <div class="btn-list ms-auto">
+                        <button type="submit" class="btn btn-danger btn-space">Send</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

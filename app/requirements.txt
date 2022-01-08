@@ -1,0 +1,10 @@
+asgiref==3.3.4
+Django==3.2
+gunicorn==20.1.0
+Pillow==8.2.0
+requests==2.25.1
+psycopg2==2.8.6
+celery==5.1.0
+redis==3.5.3
+flower==1.0.0
+pandas==1.2.4

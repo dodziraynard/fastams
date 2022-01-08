@@ -1,0 +1,75 @@
+{% extends 'dashboard/base_template.html' %}
+
+{% block pagetitle %} messages {% endblock %}
+
+{% load static %}
+
+
+
+<!-- MAIN CONTENT STARTS HERE -->
+{% block content %}
+<!-- breadcrumb -->
+<div class="breadcrumb-header justify-content-between">
+    <div class="my-auto">
+        <div class="d-flex">
+            <h4 class="content-title mb-0 my-auto">Home</h4>
+            <a href="{% url 'dashboard:messages' %}" class="text-muted mt-1 tx-13 ms-2 mb-0">/ Messages</a>
+            <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Details</span>
+        </div>
+    </div>
+    <div class="d-flex my-xl-auto right-content">
+        <div class="pe-1 mb-xl-0">
+            <a title="Add a Staff" href="{% url 'dashboard:compose' %}" class="btn btn-info me-2"><i
+                    class="mdi mdi-pencil"></i> Compose</a>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!-- page title -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="page-title-box row">
+            <h4 class="page-title col">Messages</h4>
+        </div>
+    </div>
+</div>
+
+<!-- container begins -->
+<div class="contaier bg-white pd-10 mt-1">
+    <div class="row mt-4 mb-2">
+        <div class="col-12 row p-3">
+            <div class="col-md-3 mb-3">
+                <p class="p-0 m-0">Message ID</p>
+                <span class="badge bg-info">{{message.id}}</span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <p class="p-0 m-0">Provider Response</p>
+                <pre>{{message.provider_response}}</pre>
+            </div>
+            <div class="col-md-3 mb-3">
+                <p class="p-0 m-0">Template Used</p>
+                <a href="{% url 'dashboard:compose' %}?id={{message.from_bulk.id}}"><i
+                        class="bi bi-envelope-open"></i></a>
+            </div>
+            <div class="col-md-3 mb-3">
+                <p class="p-0 m-0">Status</p>
+                {% if message.status == 'SUCCESS' %}
+                <span class="p-1 badge bg-success">DELIVERED</span>
+                {% elif message.PENDING == 'FAILED'%}
+                <span class="p-1 badge bg-danger">FAILED</span>
+                {% else %}
+                <span class="p-1 badge bg-warning">PENDING</span>
+                {% endif %}
+                <a href="{% url 'dashboard:retry_failed_sms' %}?id={{message.id}}"
+                    class="mt-1 p-1 cursor-pointer badge bg-primary text text-white">Resend</a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <p class="p-0 m-0">Message</p>
+                <pre>{{message.text}}</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

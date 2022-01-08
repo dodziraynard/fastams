@@ -1,0 +1,190 @@
+{% extends 'dashboard/base_template.html' %}
+
+{% block pagetitle %} messages {% endblock %}
+
+{% load static %}
+
+
+
+<!-- MAIN CONTENT STARTS HERE -->
+{% block content %}
+<!-- breadcrumb -->
+<div class="breadcrumb-header justify-content-between">
+    <div class="my-auto">
+        <div class="d-flex">
+            <h4 class="content-title mb-0 my-auto">Home</h4>
+            <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Messages</span>
+        </div>
+    </div>
+    <div class="d-flex my-xl-auto right-content">
+        <div class="pe-1 mb-xl-0">
+            <a title="Add a Staff" href="{% url 'dashboard:compose' %}" class="btn btn-info me-2"><i
+                    class="mdi mdi-pencil"></i> Compose</a>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!-- page title -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="page-title-box row">
+            <h4 class="page-title col">Messages</h4>
+        </div>
+    </div>
+</div>
+
+<!-- container begins -->
+<div class="contaier bg-white pd-10 mt-1">
+    <!-- SEARCH message FORM -->
+    <form action="" method="GET">
+        <div class="input-group input-group-lg mb-3 mt-3">
+            <input type="text" class="form-control" name="query"
+                placeholder="Search messages by content text and numbers." value="{{query}}"
+                aria-label="Search messages by content text and numbers" aria-describedby="button-addon2">
+            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+        </div>
+    </form>
+
+    <div class="row mt-4 mb-2">
+        <div class="col-12">
+            <div class="page-title-box row">
+                <h4 class="page-title col">Filter Search</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- filter search -->
+    <section>
+        {% if messages %}
+        <div id="message-container" class="col-md-12 mx-auto">
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show py-3 mt-2" role="alert">
+                <strong>Alert! </strong> {{message}}.
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form action="" method="get" class="mb-2" id="filter-message-form">
+            <div class="d-flex" style="overflow-x: scroll;">
+                <p class="p-1 lead">Status</p>
+                <select class="form-control" name="status" id="message_status">
+                    <option value="">------</option>
+                    <option value="PENDING" {% if status == 'PENDING' %}selected{%endif%}>Pending</option>
+                    <option value="SUCCESS" {% if status == 'SUCCESS' %}selected{%endif%}>Success</option>
+                    <option value="FAILED" {% if status == 'FAILED' %}selected{%endif%}>Failed</option>
+                </select>
+
+                <p class="p-1 lead">From</p>
+                <input class="form-control" type="date" name="start" id="start" value="{{start}}">
+                <p class="p-1 lead">to</p>
+                <input class="form-control" type="date" name="end" id="end" value="{{end}}">
+                <select class="form-control" name="count" id="count">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="300" selected>300</option>
+                    <option value="500">500</option>
+                </select>
+                <div class="ml-1">
+                    <button type="submit" class="btn btn-primary" id="load_btn">Load</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!-- filter ends -->
+
+    <!-- table of messages : with pagination -->
+    <div class="table-responsive">
+        <table id="messages-data-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        <p class="lead">SN</p>
+                    </th>
+                    <th scope="col">
+                        <p class="lead"> ID</p>
+                    </th>
+                    <th scope="col">
+                        <p class="lead">Number</p>
+                    </th>
+                    <th scope="col">
+                        <p class="lead">Text</p>
+                    </th>
+
+                    <th scope="col">
+                        <p class="lead">Status</p>
+                    </th>
+                    <th scope="col">
+                        <p class="lead">Updated At</p>
+                    </th>
+                    <th scope="col">
+                        <p class="lead">Created At</p>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!--  -->
+                {% if sms %}
+                {% for message in sms %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td> <a href="{% url 'dashboard:message_details' message.id %}">{{message.id}}</a>
+                    <td>{{message.number}}</td>
+                    <td>
+                        <pre>{{message.text}}</pre>
+                    </td>
+                    <td>
+                        {% if message.status == 'SUCCESS' %}
+                        <span class="p-1 badge bg-success">DELIVERED</span>
+                        {% elif message.status == 'FAILED'%}
+                        <span class="p-1 badge bg-danger">FAILED</span>
+                        <a href="{% url 'dashboard:retry_failed_sms' %}?id={{message.id}}"
+                            class="mt-1 p-1 cursor-pointer badge bg-primary text text-white">Resend</a>
+                        {% else %}
+                        <span class="p-1 badge bg-warning">PENDING</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{message.updated_at}}</td>
+                    <td>{{message.created_at}}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="12">
+                        <p class="lead text-center">No messages found</p>
+                    </td>
+                </tr>
+                {% endif %}
+                <!--  -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+        <button class="btn btn-warning" onclick=retryFilter("{% url 'dashboard:retry_failed_sms' %}")>Retry
+            Filtered</button>
+    </div>
+    <!-- table ends -->
+</div>
+
+{% endblock %}
+
+{% block morescripts %}
+<script>
+    $(document).ready(function () {
+        $('#messages-data-table').DataTable();
+    });
+
+    function retryFilter(url) {
+        response = confirm("Click on OK to continue.");
+        if (!response) return;
+        search = window.location.search
+        window.location = url + search
+    }
+</script>
+{% endblock %}

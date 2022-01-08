@@ -1,0 +1,76 @@
+{% extends 'dashboard/base_template.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb-header justify-content-between">
+    <div class="my-auto">
+        <div class="d-flex">
+            <h4 class="content-title mb-0 my-auto">Config</h4>
+            <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Settings</span>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+{% if messages %}
+<div id="message-container" class="col-md-6 mx-auto">
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show py-3 mt-2" role="alert">
+        <strong>Alert! </strong> {{message}}.
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- row -->
+<div class="row">
+    <div class="col-sm-12 col-lg-6 col-xl-3">
+        <div class="card card-img-holder">
+            <div class="card-body list-icons">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="clearfix">
+                        <div class="">
+                            <p class="card-text text-muted mb-1">API KEY</p>
+                            <input type="text" name="api_key" class="col-12 form-control" value="{{setting.api_key}}">
+                        </div>
+                    </div>
+                    <div class="card-footer p-0">
+                        <button type="submit" class="mt-2 btn btn-primary">
+                            <i class="bi bi-save" aria-hidden="true"></i>
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-6 col-xl-3">
+        <div class="card card-img-holder">
+            <div class="card-body list-icons">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="clearfix">
+                        <div class="">
+                            <p class="card-text text-muted mb-1">Sender ID</p>
+                            <input type="text" name="sender_id" class="col-12 form-control"
+                                value="{{setting.sender_id}}">
+                        </div>
+                    </div>
+                    <div class="card-footer p-0">
+                        <button type="submit" class="mt-2 btn btn-primary">
+                            <i class="bi bi-save" aria-hidden="true"></i>
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row closed -->
+
+{% endblock %}
